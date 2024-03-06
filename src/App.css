@@ -22,6 +22,10 @@ button {
   font-family: 'Poppins', sans-serif;
 }
 
+::-webkit-scrollbar{
+  width: 0px;
+}
+
 .errors{
   color: tomato;
   font-size: 12px;
@@ -54,6 +58,7 @@ body {
   padding: 0;
   margin: 0;
 }
+
 
 .App {
   background-color: white;
@@ -191,9 +196,9 @@ body {
 
 .welcome_end_wrapper_text {
   color: white;
-  font-family: 'Anton', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 20px;
-  text-transform: uppercase;
+  font-weight: 600;
 }
 
 .welcome_end_wrapper_button {
@@ -267,6 +272,11 @@ body {
   line-height: 23px;
 }
 
+#how_wrapper_subhead{
+  font-size: 12px;
+  line-height: 21px;
+}
+
 .about_us_wrapper_2 img {
   width: 100%;
   height: 100%;
@@ -276,6 +286,10 @@ body {
 
 .about_us_wrapper_2 {
   flex: 1;
+}
+
+#how_wrapper_2{
+  flex: .8;
 }
 
 /* Here is the CSS for the About us */
@@ -291,6 +305,7 @@ body {
   padding-inline: 14px;
   font-size: 13px;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .a_about_us_wrapper_trust {
@@ -453,6 +468,105 @@ body {
   color: black;
 }
 
+/* Adding all the CSS realted to our Tech */
+.our_tech{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 150px;
+}
+
+.our_tech_wrapper{
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.our_tech_head_wrap{
+  display: flex;
+  width: 100%;
+  gap: 50px;
+  font-family: 'Anton',sans-serif;
+  text-transform: uppercase;
+  font-size:35px;
+  text-align: center;
+  align-items: center;
+}
+
+
+.our_tech_head_bar{
+  flex: 1;
+  background: rgb(82,114,249);
+  background: linear-gradient(90deg, rgba(255,152,0,1) 25%, rgba(82,114,249,1) 75%); 
+  height: 27px;
+  border-radius: 5px;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.our_tech_head_bar_revert{
+  flex: 1;
+  background: rgba(255,152,0,1);  
+  background: linear-gradient(90deg, rgba(82,114,249,1) 25%, rgba(255,152,0,1) 75%); 
+  height: 27px;
+  border-radius: 5px;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+.our_techs{
+  display: flex;
+  gap: 50px;
+  align-items: center;
+  height: 700px;
+  margin-bottom: 30px;
+}
+
+.a_tech{
+  flex: 1;
+  text-align: center;
+  background: rgb(82,114,249);
+  background: linear-gradient(180deg, rgba(82,114,249,1) 44%, rgba(255,255,255,1) 44%, rgba(255,255,255,1) 51%, rgba(255,152,0,1) 51%);
+  height: fit-content;
+  border-radius: 15px;
+  transition: inherit;
+  transition-duration: .3s;
+}
+
+.a_tech:hover{
+  margin-top: -20px;
+  cursor: pointer;
+  background: black;
+}
+
+.a_tech_wrapper{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background-color: white;
+  margin: 10px;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.a_tech i{
+  font-size: 100px;
+}
+
+.a_tech_head{
+  font-family: 'Anton',sans-serif;
+  text-transform: uppercase;
+  font-size: 30px;
+}
+
+.a_tech_para{
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 22px;
+}
+
 /* Adding all the CSS related to our services */
 .our_services{
   background-image: url("./utility/images/img6.webp");
@@ -504,6 +618,7 @@ body {
   font-family: 'Anton';
   font-weight: 300;
   font-size: 50px;
+  text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .our_services_cont_man_subhead{
@@ -795,9 +910,358 @@ form button{
   cursor: pointer;
 }
 
+@keyframes fab_top_start {
+  from{
+    opacity: 0;
+    pointer-events: none;
+  }
+  to{
+    opacity: 1;
+    pointer-events: inherit;
+  }
+}
+
+@keyframes fab_top_exits {
+  from{
+    opacity: 1;
+    pointer-events: inherit;
+  }
+  to{
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.fab_top_start{
+  animation: fab_top_start .3s linear forwards;
+}
+
+.fab_top_exits{
+  animation: fab_top_exits .3s linear forwards;
+}
+
+#fab_top{
+  background-color: var(--main-color);
+  width: fit-content;
+  color: white;
+  position: fixed;
+  bottom: 0;
+  z-index: 3;
+  left: 0;
+  margin-bottom: 30px;
+  margin-left: 30px;
+  border-radius: 100%;
+  font-size: 30px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  transition-duration: .3s;
+  cursor: pointer;
+}
+
 #fab:hover{
   transform: scale(1.1);
   background-color: var(--main-color-2);
+}
+
+#fab_top:hover{
+  transform: scale(1.1);
+  background-color: var(--main-color-2);
+}
+
+/* CSS for the portfolio */
+.our-portfolio{
+  width: 100%;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.our-portfolio-wrapper{
+  width: 90%;
+}
+
+.our-portfolio-main{
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  flex-wrap: wrap;
+  gap: 100px;
+  width: 90%;
+  margin: auto;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.a-portfolio{
+  width: 525px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.a-portfolio-head{
+  font-family: 'Anton',sans-serif;
+  font-size: 40px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.a-portfolio img{
+  width: 100%;
+  border-radius: 3px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  transition-duration: .3s;
+}
+
+.a-portfolio img:hover{
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.a-portfolio-para{
+  font-family: 'Roboto',sans-serif;
+  font-weight: 500;
+  line-height: 22px;
+  font-size: 14px;
+}
+
+/* CSS for the ABS Form Sections */
+.abs-form-section{
+  position: fixed;
+  background-color: rgba(0,0,0,0.3);
+  backdrop-filter: blur(3px);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition-duration: .3s;
+}
+
+.abs-form-section-wrapper{
+  background-color: white;
+  width: fit-content;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  width: 800px;
+}
+
+.abs-form-comp{
+  flex: 1;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.abs-form-comp:nth-child(2){
+  position: relative;
+}
+
+.abs-form-cross{
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 25px;
+  font-size: 20px;
+  padding: 5px;
+  color: #3C3C3D;
+  border: 1.5px solid #3C3C3D;
+  border-radius: 100%;
+  cursor: pointer;
+  transition-duration: .3s;
+}
+
+.abs-form-cross:hover{
+  background-color: #3C3C3D;
+  color: white;
+}
+
+.abs-form-section-first{
+  background-image: url("./utility/images/img2.jpg");
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  height: 100%;
+  background-position: center center;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: .7;
+}
+
+.abs-form-section-first-cont{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(2px);
+  border-right: 2px solid black;
+  height: 100%;
+  width: 100%;
+}
+
+.abs-form-section-second-cont{
+  padding: 40px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.abs-form-head{
+  font-size: 30px;
+  font-family: 'Poppins',sans-serif;
+  line-height: 40px;
+  font-weight: 700;
+}
+
+.abs-form-para{
+  font-size: 15px;
+  font-weight: 500;
+  width: 90%;
+  text-align: left;
+  margin-top: 7px;
+}
+
+.abs-form-buts{
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 90%;
+}
+
+.abs-form-buts button{
+  background-color: black;
+  color: white;
+  height: 45px;
+  font-family: 'Poppins';
+  font-weight: 500;
+  font-size: 14px;
+  border-radius: 3px;
+  transition-duration: .3s;
+}
+
+.abs-form-buts button:hover{
+  background-color: #5272F9;
+  transform: scale(1.1);
+}
+
+.abs-form-but-divider{
+  height: 2px;
+  width: 90%;
+  margin: auto;
+  background-color: #3C3C3D;
+  color: #3C3C3D;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  text-align: center;
+}
+
+.abs-form-but-divider-text{
+  background-color: white;
+  padding-inline: 10px;
+  font-weight: 500;
+}
+
+@keyframes float {
+  0%{
+    opacity: 1;
+  }
+  50%{
+    opacity: .5;
+  }
+  100%{
+    margin-top: 1;
+  }
+}
+
+.navbar-logo-app{
+  transform: scale(1.2);
+  animation: float 1s ease-in-out infinite;
+  transition-duration: 1s;
+}
+
+/* Adding all the CSS related to the Intro-Screen */
+@keyframes intro-logo-go {
+  0%{
+    opacity: 1;
+    transform: scale(1);
+  }
+  100%{
+    opacity: 0;
+    transform: scale(3);
+    display: none;
+  }
+}
+
+.intro-logo-section{
+  position: fixed;
+  top: 0;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: intro-logo-go .7s linear forwards;
+  animation-delay: 4s;
+}
+
+@keyframes zeroherointro {
+  0%{
+    border-width: 2px;
+  }
+  50%{
+    border-width: 50px;
+  }
+  100%{
+    border-color: white;
+  }
+}
+
+.intro-logo{
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  border-radius: 100%;
+  border: 2px solid #5272F9;
+  background-color: white;
+  animation: zeroherointro .9s linear infinite;
+}
+
+/* Adding the Css of the Cursor here */
+.best_cursor{
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  background-color: #FF882F;
+  top: 20px;
+  mix-blend-mode:difference;
+  z-index: 6;
+  pointer-events: none;
+  transition-duration: .1s;
 }
 
 /* Adding all the Media Queries Here */
@@ -917,6 +1381,23 @@ form button{
 }
 
 @media only screen and (max-width: 810px) {
+  .intro-logo{
+    width: 200px;
+    height: 200px;
+  }
+
+  .our-portfolio-main{
+    flex-direction: column;
+  }
+
+  .a-portfolio{
+    width: 100%;
+  }
+
+  .abs-form-section{
+    display: none;
+  }
+
   #fab{
     background-color: var(--main-color);
     width: fit-content;
@@ -939,7 +1420,34 @@ form button{
     cursor: pointer;
   }
 
+  #fab_top{
+    background-color: var(--main-color);
+    width: fit-content;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    z-index: 3;
+    right: 0;
+    margin-bottom: 15px;
+    margin-right: 15px;
+    border-radius: 100%;
+    font-size: 25px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    transition-duration: .3s;
+    cursor: pointer;
+  }
+
   #fab:hover{
+    transform: scale(1);
+    background-color: var(--main-color);
+  }
+
+  #fab_top:hover{
     transform: scale(1);
     background-color: var(--main-color);
   }
@@ -979,11 +1487,22 @@ form button{
 
   .about_us_wrapper_trust{
     margin-top: 15px;
+    transform: scale(.8);
+    margin-left: -35px;
   }
 
   .our_services_cont{
     flex-direction: column;
     gap: 60px;
+  }
+
+  .our_techs{
+    flex-direction: column;
+    height: auto;
+  }
+
+  .a_tech:hover{
+    margin-top: 0px;
   }
 
   .our_services_cont:nth-child(2){

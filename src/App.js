@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Navbar } from './components/navbar/Navbar';
 import { FaPhoneAlt, FaInstagram, FaFacebookF, FaTwitter, FaTelegramPlane } from "react-icons/fa";
-import { FaEnvelope } from "react-icons/fa6";
-import { AiOutlineForm, AiFillMessage} from "react-icons/ai";
+import { FaEnvelope, FaArrowUp } from "react-icons/fa6";
+import { AiOutlineForm, AiFillMessage } from "react-icons/ai";
+import { RxCross2 } from "react-icons/rx";
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { SpinnerCircularFixed } from "spinners-react"
@@ -30,6 +31,8 @@ const App = () => {
   const handshake_logo = require("./utility/images/icons/about_us/Handshake.png");
   const headset_logo = require("./utility/images/icons/about_us/Headset Help.png");
   const b_line_logo = require("./utility/images/icons/about_us/b_line.png");
+  const logo_text = require("./utility/images/logo/logo_text.png")
+  const logo = require("./utility/images/logo/logo.png")
 
   // Getting all the about us How logos here
   const brain_logo = require("./utility/images/icons/about_us/Brain Research.png");
@@ -38,14 +41,31 @@ const App = () => {
   // getting all the about us section images
   const about_sec_img = require("./utility/images/img2.jpg")
 
+  // getting all the Portfolio IMAGES here
+  const portfolio1 = require("./utility/images/portfolio/1.png");
+  const portfolio2 = require("./utility/images/portfolio/2.png");
+  const portfolio3 = require("./utility/images/portfolio/3.png");
+  const portfolio4 = require("./utility/images/portfolio/4.png");
+  const portfolio5 = require("./utility/images/portfolio/5.png");
+  const portfolio6 = require("./utility/images/portfolio/6.png");
+  const portfolio7 = require("./utility/images/portfolio/7.png");
+
   // adding all the useRef's
   const welcome_referrer = useRef();
+  const top_fab = useRef();
+  const cursor_position = useRef();
 
   // adding all the variables here related to captcha
   const captchaRef = useRef();
 
   // all form related variables are here
   const [formSent, setFormSent] = useState(false);
+  const [oneTimeFab, setOneTimeFab] = useState(false);
+  const [oneTimeTab, setOneTimeTab] = useState(false);
+  const [mouseCords, setMouseCords] = useState({
+    x: 0,
+    y: 0
+  })
 
   const [userInputData, setInputData] = useState({
     first_name: "",
@@ -74,9 +94,16 @@ const App = () => {
   // is scrolled function here
   const isScrolled = () => {
     if (window.scrollY >= 150) {
-      welcome_referrer.current.style.marginTop = '250px'
+      setOneTimeFab(true)
+      try {
+        top_fab.current.className = 'fab_top_start';
+      }
+      catch (e) { }
     } else {
-      welcome_referrer.current.style.marginTop = '0px'
+      try {
+        top_fab.current.className = 'fab_top_exits';
+      }
+      catch (e) { }
     }
   }
 
@@ -108,6 +135,21 @@ const App = () => {
       captcha: null
     })
   }
+
+
+  // Free LIVE CHAT CODE
+
+  // useEffect(() => {
+  //   var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+  //   (function () {
+  //     var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+  //     s1.async = true;
+  //     s1.src = 'https://embed.tawk.to/65d4af128d261e1b5f62bc82/1hn3cnotg';
+  //     s1.charset = 'UTF-8';
+  //     s1.setAttribute('crossorigin', '*');
+  //     s0.parentNode.insertBefore(s1, s0);
+  //   })();
+  // })
 
   const onFormSubmit = async (e) => {
     // checking if form is already sented
@@ -215,14 +257,38 @@ const App = () => {
 
   // adding the useEffect function here
   useEffect(() => {
-    // window.addEventListener('click', isScrolled)
-    // return () => {
-    //   window.removeEventListener('click', isScrolled)
-    // }
+    window.addEventListener('scroll', isScrolled)
+
+    const mobileScreen = window.matchMedia('(max-width:810px)')
+    if (!mobileScreen.matches) {
+      // adding the front-tab timeout here
+      const showOneTab = setTimeout(() => {
+        setOneTimeTab(true)
+      }, 10000)
+    }
+
+    // making the cursor move here
+    return () => {
+      window.removeEventListener('scroll', isScrolled)
+      // clearing tab timeout in intentional re-render
+      if (!mobileScreen.matches) {
+        // adding the front-tab timeout here
+        clearInterval(setOneTimeTab)
+      }
+    }
   }, [])
 
   return (
-    <div id='App'>
+    <div
+      className='App App_computer'
+      onMouseMove={(event) => {
+        // changing the state of the mouse here
+        setMouseCords({
+          x: `${event.clientX - 17.5}px`,
+          y: `${event.clientY - 17.5}px`
+        })
+      }}
+    >
       <Navbar></Navbar>
       <div className='welcome' id='welcome' ref={welcome_referrer}>
         <div className='welcome_wrapper'>
@@ -403,14 +469,14 @@ const App = () => {
               </div>
             </div>
             <div className='about_us_how_2'>
-              <div className='about_us_wrapper_2'>
+              <div className='about_us_wrapper_2' id='how_wrapper_2'>
                 <div className='about_us_wrapper_prehead'>
                   OUR STEPS <div style={{ width: '70px', height: '7px', backgroundColor: 'black', borderRadius: '10px' }}></div>
                 </div>
                 <div className='about_us_wrapper_head'>
                   OUR STREAMLINED PROCESS Makes everything WORK simple.
                 </div>
-                <div className='about_us_wrapper_subhead'>
+                <div className='about_us_wrapper_subhead' id='how_wrapper_subhead'>
                   Bringing together the power of identification, planning, and action, our approach at [Your Agency Name] is designed to propel your cleaning business towards unparalleled success. By understanding your unique needs, meticulously planning each step, and executing with precision, we create a pathway to growth and achievement. With our dedicated team by your side, you can trust that every aspect of your web design, marketing, and SEO initiatives will be handled with expertise and care. Let us be your partner in realizing your vision and unlocking the full potential of your cleaning business.
                 </div>
                 <div className='about_us_wrapper_trust'>
@@ -464,6 +530,57 @@ const App = () => {
           </div>
         </div>
       </div>
+      <div className='our_tech'>
+        <div className='our_tech_wrapper'>
+          <div className='our_tech_head_wrap'>
+            <div className='our_tech_head_bar'></div>
+            <div className='our_tech_head'>
+              Can WORK WITH ALL <br></br>SORTS OF <span style={{ color: 'rgba(255,152,0,1)' }}>TECHNOLOGIES</span>
+            </div>
+            <div className='our_tech_head_bar_revert'></div>
+          </div>
+          <div className='our_techs'>
+            <div className='a_tech'>
+              <div className='a_tech_wrapper'>
+                <div className='a_tech_icon'>
+                  <i class="fa-brands fa-react"></i>
+                </div>
+                <div className='a_tech_head'>
+                  Custom development
+                </div>
+                <div className='a_tech_para'>
+                  Custom development involves creating websites from scratch, tailoring every aspect to meet the unique needs and preferences of clients. Our agency excels in custom development, offering bespoke solutions that are meticulously crafted to reflect the branding, functionality, and user experience desired by cleaning companies and businesses. With custom development, we have the flexibility to implement complex features, integrate specific functionalities, and ensure optimal performance, scalability, and security for our clients' websites.
+                </div>
+              </div>
+            </div>
+            <div className='a_tech'>
+              <div className='a_tech_wrapper'>
+                <div className='a_tech_icon'>
+                  <i class="fa-brands fa-webflow"></i>
+                </div>
+                <div className='a_tech_head'>
+                  WEB BUILDERS
+                </div>
+                <div className='a_tech_para'>
+                  Website builders provide a user-friendly platform for creating websites without the need for coding skills. At our agency, we leverage advanced website builders to rapidly design and deploy professional-grade websites for cleaning companies and businesses. With drag-and-drop interfaces, pre-designed templates, and intuitive customization options, website builders streamline the development process, allowing us to deliver stunning websites efficiently. We harness the power of website builders to empower our clients with easy-to-manage websites that maintain high standards of design and functionality.
+                </div>
+              </div>
+            </div>
+            <div className='a_tech'>
+              <div className='a_tech_wrapper'>
+                <div className='a_tech_icon'>
+                  <i class="fa-brands fa-wordpress"></i>
+                </div>
+                <div className='a_tech_head'>
+                  WORDPRESS
+                </div>
+                <div className='a_tech_para'>
+                  Our agency excels in WordPress development, harnessing its flexibility, scalability, and extensive plugin ecosystem to craft dynamic websites for cleaning companies and businesses. With WordPress, we offer seamless content management, flexible customization, and integration with third-party services, ensuring our clients' needs are met and their expectations surpassed, whether it's informational websites, e-commerce platforms, or interactive blogs.                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className='our_services' id='our_services'>
         <div className='our_services_wrapper'>
           <div className='our_services_cont'>
@@ -472,7 +589,7 @@ const App = () => {
                 Our Services ?
               </div>
               <div className='our_services_cont_man_head'>
-                FOR COMMERICAL CLEANING BUSINESSES
+                GOAL IS TO MAKE YOU CLEANING BUSINESS KING
               </div>
               <div className='our_services_cont_man_subhead'>
                 Our tailored services for commercial cleaning companies are designed to elevate your business to new heights. From crafting professional websites that showcase your expertise to implementing targeted marketing strategies that attract high-value clients, we've got you covered. Whether you're a small startup or a well-established enterprise, our team is dedicated to helping you stand out in the competitive commercial cleaning industry. Let us handle the digital aspect of your business so you can focus on delivering exceptional service to your clients.
@@ -538,81 +655,127 @@ const App = () => {
               </div>
             </div>
           </div>
-          <div className='our_services_cont'>
-            <div className='a_our_services_wrapper'>
-              <div className='a_our_serivice'>
-                <div className='a_our_service_head'>
-                  Web Design
-                </div>
-                <div className='a_our_service_subhead'>
-                  Elevate your commercial cleaning company's online presence with our specialized web design services tailored specifically for the industry. Our team understands the unique needs of commercial cleaning businesses, from showcasing your range of services to highlighting your expertise and professionalism
-                </div>
-                <div className='a_our_service_check'>
-                  {/* This bottom div will be in a loop of datas */}
-                  {serviceCheckers.web_design.map((ele, idx) => {
-                    return <div className='a_service_check'>
-                      <img src={check_icon_b}></img>
-                      <div className='a_service_check_text'>
-                        {ele}
-                      </div>
-                    </div>
-                  })}
-                </div>
+        </div>
+      </div>
+      <div className='our-portfolio'>
+        <div className='our-portfolio-wrapper'>
+          <div className='our_tech_head_wrap'>
+            <div className='our_tech_head_bar'></div>
+            <div className='our_tech_head'>
+              Our Design <br></br> <span style={{
+                fontSize: '40px'
+              }}>portfolio</span>
+            </div>
+            <div className='our_tech_head_bar_revert'></div>
+          </div>
+          <div className='our-portfolio-main'>
+            <div className='a-portfolio'>
+              <div className='a-portfolio-img'>
+                <img src={portfolio2}></img>
               </div>
-              <div className='a_our_serivice'>
-                <div className='a_our_service_head'>
-                  Local SEO
-                </div>
-                <div className='a_our_service_subhead'>
-                  Elevate your commercial cleaning company's online presence with our specialized web design services tailored specifically for the industry. Our team understands the unique needs of commercial cleaning businesses, from showcasing your range of services to highlighting your expertise and professionalism
-                </div>
-                <div className='a_our_service_check'>
-                  {/* This bottom div will be in a loop of datas */}
-                  {serviceCheckers.seo.map((ele, idx) => {
-                    return <div className='a_service_check'>
-                      <img src={check_icon_b}></img>
-                      <div className='a_service_check_text'>
-                        {ele}
-                      </div>
-                    </div>
-                  })}
-                </div>
+              <div className='a-portfolio-head'>
+                Kleaner Stop
               </div>
-              <div className='a_our_serivice'>
-                <div className='a_our_service_head'>
-                  Marketing
-                </div>
-                <div className='a_our_service_subhead'>
-                  Elevate your commercial cleaning company's online presence with our specialized web design services tailored specifically for the industry. Our team understands the unique needs of commercial cleaning businesses, from showcasing your range of services to highlighting your expertise and professionalism
-                </div>
-                <div className='a_our_service_check'>
-                  {/* This bottom div will be in a loop of datas */}
-                  {serviceCheckers.marketing.map((ele, idx) => {
-                    return <div className='a_service_check'>
-                      <img src={check_icon_b}></img>
-                      <div className='a_service_check_text'>
-                        {ele}
-                      </div>
-                    </div>
-                  })}
-                </div>
+              <div className='a-portfolio-para'>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </div>
             </div>
-            <div className='our_services_cont_man'>
-              <div className='our_services_cont_man_prehead'>
-                Our Services ?
+            <div className='a-portfolio'>
+              <div className='a-portfolio-img'>
+                <img src={portfolio1}></img>
               </div>
-              <div className='our_services_cont_man_head'>
-                FOR Residential CLEANING BUSINESSES
+              <div className='a-portfolio-head'>
+                Cleaning One
               </div>
-              <div className='our_services_cont_man_subhead'>
-                Our tailored services for commercial cleaning companies are designed to elevate your business to new heights. From crafting professional websites that showcase your expertise to implementing targeted marketing strategies that attract high-value clients, we've got you covered. Whether you're a small startup or a well-established enterprise, our team is dedicated to helping you stand out in the competitive commercial cleaning industry. Let us handle the digital aspect of your business so you can focus on delivering exceptional service to your clients.
+              <div className='a-portfolio-para'>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </div>
+            </div>
+            <div className='a-portfolio'>
+              <div className='a-portfolio-img'>
+                <img src={portfolio3}></img>
+              </div>
+              <div className='a-portfolio-head'>
+                Cleaning Company
+              </div>
+              <div className='a-portfolio-para'>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className='our-portfolio-wrapper'>
+          <div className='our_tech_head_wrap'>
+            <div className='our_tech_head_bar'></div>
+            <div className='our_tech_head'>
+              Other Web Designs <br></br> <span style={{
+                fontSize: '40px'
+              }}>portfolio</span>
+            </div>
+            <div className='our_tech_head_bar_revert'></div>
+          </div>
+          <div className='our-portfolio-main'>
+            <div className='a-portfolio'>
+              <div className='a-portfolio-img'>
+                <img src={portfolio4}></img>
+              </div>
+              <div className='a-portfolio-head'>
+                Topic Listintg
+              </div>
+              <div className='a-portfolio-para'>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </div>
+            </div>
+            <div className='a-portfolio'>
+              <div className='a-portfolio-img'>
+                <img src={portfolio5}></img>
+              </div>
+              <div className='a-portfolio-head'>
+                Course Selling
+              </div>
+              <div className='a-portfolio-para'>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </div>
+            </div>
+            <div className='a-portfolio'>
+              <div className='a-portfolio-img'>
+                <img src={portfolio6}></img>
+              </div>
+              <div className='a-portfolio-head'>
+                Furniture Company
+              </div>
+              <div className='a-portfolio-para'>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </div>
+            </div>
+            <div className='a-portfolio'>
+              <div className='a-portfolio-img'>
+                <img src={portfolio7}></img>
+              </div>
+              <div className='a-portfolio-head'>
+                Tanishq's Portfolio
+              </div>
+              <div className='a-portfolio-para'>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </div>
             </div>
           </div>
         </div>
       </div>
       <div className='contact-us' id='contact-us'>
+        <div className='our_tech_head_wrap' style={{
+          width:'90%',
+          margin:'auto',
+          marginBottom:'90px'
+        }}>
+          <div className='our_tech_head_bar'></div>
+          <div className='our_tech_head'>
+            <span style={{
+              fontSize:'45px'
+            }}>Contact US</span>
+          </div>
+          <div className='our_tech_head_bar_revert'></div>
+        </div>
         <div className='contact-us-cont'>
           <div className='contact-us-1'>
             <div className='contact-us-1-cont'>
@@ -785,13 +948,74 @@ const App = () => {
         position='bottom-left'
         hideProgressBar={false}
         closeOnClick
-        theme='dark'
+        theme='light'
       ></ToastContainer>
       <a id='fab' href='#contact-us'>
         <AiFillMessage></AiFillMessage>
       </a>
+      {oneTimeFab && <a id='fab_top' className='' ref={top_fab} href='#welcome'>
+        <FaArrowUp></FaArrowUp>
+      </a>}
+      <div className='abs-form-section' style={{
+        opacity: oneTimeTab ? '1' : '0',
+        pointerEvents: !oneTimeTab ? 'none' : 'unset'
+      }}>
+        <div className='abs-form-section-wrapper'>
+          <div className='abs-form-comp abs-form-section-first'>
+            <div className='abs-form-section-cont abs-form-section-first-cont'>
+              <div id='nav_1' className='navbar_child navbar-logo-app'>
+                <img src={logo}></img>
+                <img src={logo_text}></img>
+              </div>
+            </div>
+          </div>
+          <div className='abs-form-comp'>
+            <RxCross2 className='abs-form-cross' onClick={() => {
+              setOneTimeTab(oneTimeTab ? false : true)
+            }}></RxCross2>
+            <div className='abs-form-section-cont abs-form-section-second-cont'>
+              <div className='abs-form-head'>
+                We are, here for you always
+              </div>
+              <div className='abs-form-para'>
+                If you are an cleaning buisness owner or company we are here for you to transform your
+                online and digital image massively
+              </div>
+              <div className='abs-form-buts'>
+                <button onClick={() => {
+                  window.location.href = `https://cleantify.com/#contact-us`
+                  setOneTimeTab(oneTimeTab ? false : true)
+                }}>Message us</button>
+                <div className='abs-form-but-divider'>
+                  <div className='abs-form-but-divider-text'>
+                    and
+                  </div>
+                </div>
+                <button>News Letter</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className='intro-logo-section'>
+        <div className='intro-logo-wrapper'>
+          <div className='intro-logo'>
+            <div id='nav_1' className='navbar_child intro-nav-logo'>
+              <img src={logo}></img>
+              <img src={logo_text}></img>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className='best_cursor'
+        ref={cursor_position}
+        style={{
+          top: mouseCords.y,
+          left: mouseCords.x
+        }}
+      ></div>
     </div>
   )
 }
-
 export default App

@@ -13,7 +13,7 @@ import { useEffect } from 'react';
 export const Navbar = () => {
     // getting the images here using the require
     const logo_text = require("../../utility/images/logo/logo_text.png")
-    const logo = require("../../utility/images/logo/logo.gif")
+    const logo = require("../../utility/images/logo/logo.png")
 
     // getting all the messages logo and website logo here
     const website_logo = require("../../utility/images/icons/website.png");
@@ -24,6 +24,7 @@ export const Navbar = () => {
     const anchor_refs = useRef([]);
     const mobile_anchor_refs = useRef([]);
     const nav_ref = useRef();
+    const web_progress_bar = useRef();
 
     // adding all the useStates here
     const [show_but_menu, setShowButsMenu] = useState(false);
@@ -89,6 +90,20 @@ export const Navbar = () => {
         }
     }, [])
 
+    useEffect(()=>{
+        window.addEventListener('scroll', getWebsiteProgress);
+        return ()=>{
+            window.removeEventListener('scroll', getWebsiteProgress);
+        }
+    })
+
+    // i will add some functions here for the progress of website scrolling
+    const getWebsiteProgress = () => {
+        let scrollTop = document.documentElement.scrollTop;
+        let scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        let progress = (scrollTop / scrollHeight) * 100;
+        web_progress_bar.current.style.width = `${progress}%`
+    }
 
     return (
         <div id='navbar' ref={nav_ref}>
@@ -167,6 +182,7 @@ export const Navbar = () => {
                     </div>
                 </div>
             </div>
+            <div className='progress-bar' ref={web_progress_bar}></div>
             <div className='mobile_nav_screen' style={{
                 opacity: (show_nav_menu) ? '1' : '0',
                 pointerEvents: (show_nav_menu) ? 'unset' : 'none'
