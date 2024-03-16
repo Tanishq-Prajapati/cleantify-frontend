@@ -18,6 +18,7 @@ import { serviceCheckers } from "./utility/data/ServicesData"
 // importing all the css files here
 import "./App.css";
 import Footer from './components/footer/Footer';
+import { portfolioDetails } from './utility/data/PortfolioData';
 
 const App = () => {
   // getting all the welcome logos here
@@ -40,15 +41,6 @@ const App = () => {
 
   // getting all the about us section images
   const about_sec_img = require("./utility/images/img2.jpg")
-
-  // getting all the Portfolio IMAGES here
-  const portfolio1 = require("./utility/images/portfolio/1.png");
-  const portfolio2 = require("./utility/images/portfolio/2.png");
-  const portfolio3 = require("./utility/images/portfolio/3.png");
-  const portfolio4 = require("./utility/images/portfolio/4.png");
-  const portfolio5 = require("./utility/images/portfolio/5.png");
-  const portfolio6 = require("./utility/images/portfolio/6.png");
-  const portfolio7 = require("./utility/images/portfolio/7.png");
 
   // adding all the useRef's
   const welcome_referrer = useRef();
@@ -328,6 +320,19 @@ const App = () => {
             <button className='welcome_but'>
               Explore Sections
             </button>
+          </div>
+          <div className='social-media-links'>
+            <div className='social-media-links-wrapper'>
+              <div className='social-link-wrapper'>
+                <FaFacebookF className='social-link'></FaFacebookF>
+              </div>
+              <div className='social-link-wrapper'>
+                <FaInstagram className='social-link'></FaInstagram>
+              </div>
+              <div className='social-link-wrapper'>
+                <FaTwitter className='social-link'></FaTwitter>
+              </div>
+            </div>
           </div>
         </div>
         <div className='welcome_end'>
@@ -669,39 +674,26 @@ const App = () => {
             <div className='our_tech_head_bar_revert'></div>
           </div>
           <div className='our-portfolio-main'>
-            <div className='a-portfolio'>
-              <div className='a-portfolio-img'>
-                <img src={portfolio2}></img>
+            {portfolioDetails.slice(0, 3).map((val) => {
+              return <div className='a-portfolio' id={val.id}>
+                <div
+                  className={'a-portfolio-img port-' + `${val.id}`}
+                  onClick={() => window.open(val.link)}
+                >
+                  <div className='view-browser'>
+                    <div>
+                      View Design
+                    </div>
+                  </div>
+                </div>
+                <div className='a-portfolio-head'>
+                  {val.portfolio_head}
+                </div>
+                <div className='a-portfolio-para'>
+                  {val.portfolio_para}
+                </div>
               </div>
-              <div className='a-portfolio-head'>
-                Kleaner Stop
-              </div>
-              <div className='a-portfolio-para'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </div>
-            </div>
-            <div className='a-portfolio'>
-              <div className='a-portfolio-img'>
-                <img src={portfolio1}></img>
-              </div>
-              <div className='a-portfolio-head'>
-                Cleaning One
-              </div>
-              <div className='a-portfolio-para'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </div>
-            </div>
-            <div className='a-portfolio'>
-              <div className='a-portfolio-img'>
-                <img src={portfolio3}></img>
-              </div>
-              <div className='a-portfolio-head'>
-                Cleaning Company
-              </div>
-              <div className='a-portfolio-para'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </div>
-            </div>
+            })}
           </div>
         </div>
         <div className='our-portfolio-wrapper'>
@@ -715,63 +707,39 @@ const App = () => {
             <div className='our_tech_head_bar_revert'></div>
           </div>
           <div className='our-portfolio-main'>
-            <div className='a-portfolio'>
-              <div className='a-portfolio-img'>
-                <img src={portfolio4}></img>
+            {portfolioDetails.slice(3, portfolioDetails.length).map((val) => {
+              return <div className='a-portfolio' id={val.id}>
+                <div
+                  className={'a-portfolio-img port-' + `${val.id}`}
+                  onClick={() => window.open(val.link)}
+                >
+                  <div className='view-browser'>
+                    <div>
+                      View Design
+                    </div>
+                  </div>
+                </div>
+                <div className='a-portfolio-head'>
+                  {val.portfolio_head}
+                </div>
+                <div className='a-portfolio-para'>
+                  {val.portfolio_para}
+                </div>
               </div>
-              <div className='a-portfolio-head'>
-                Topic Listintg
-              </div>
-              <div className='a-portfolio-para'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </div>
-            </div>
-            <div className='a-portfolio'>
-              <div className='a-portfolio-img'>
-                <img src={portfolio5}></img>
-              </div>
-              <div className='a-portfolio-head'>
-                Course Selling
-              </div>
-              <div className='a-portfolio-para'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </div>
-            </div>
-            <div className='a-portfolio'>
-              <div className='a-portfolio-img'>
-                <img src={portfolio6}></img>
-              </div>
-              <div className='a-portfolio-head'>
-                Furniture Company
-              </div>
-              <div className='a-portfolio-para'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </div>
-            </div>
-            <div className='a-portfolio'>
-              <div className='a-portfolio-img'>
-                <img src={portfolio7}></img>
-              </div>
-              <div className='a-portfolio-head'>
-                Tanishq's Portfolio
-              </div>
-              <div className='a-portfolio-para'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </div>
-            </div>
+            })}
           </div>
         </div>
       </div>
       <div className='contact-us' id='contact-us'>
-        <div className='our_tech_head_wrap' style={{
-          width:'90%',
-          margin:'auto',
-          marginBottom:'90px'
+        <div className='our_tech_head_wrap contact-us-bataya' style={{
+          width: '90%',
+          margin: 'auto',
+          marginBottom: '90px'
         }}>
           <div className='our_tech_head_bar'></div>
           <div className='our_tech_head'>
             <span style={{
-              fontSize:'45px'
+              fontSize: '45px'
             }}>Contact US</span>
           </div>
           <div className='our_tech_head_bar_revert'></div>
@@ -812,8 +780,14 @@ const App = () => {
                 </div>
               </div>
               <div className='social-media-icons'>
-                <FaInstagram className='a-social-icon'></FaInstagram>
-                <FaFacebookF className='a-social-icon'></FaFacebookF>
+                <FaInstagram 
+                  className='a-social-icon'
+                  onClick={()=>open("https://www.facebook.com/profile.php?id=100088843502685")}
+                ></FaInstagram>
+                <FaFacebookF 
+                  className='a-social-icon'
+                  onClick={()=>open("https://www.instagram.com/web.tanishq.dev?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==")}
+                ></FaFacebookF>
                 <FaTwitter className='a-social-icon'></FaTwitter>
               </div>
             </div>

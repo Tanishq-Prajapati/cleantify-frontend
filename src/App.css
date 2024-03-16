@@ -84,6 +84,7 @@ body {
   padding-top: 100px;
   padding-left: 100px;
   padding-bottom: 80px;
+  display: flex;
   color: var(--main-color-4);
 }
 
@@ -175,7 +176,7 @@ body {
 /* adding CSS for welcome end here */
 .welcome_end {
   background-color: var(--main-color-2);
-  height: 10px;
+  height: 15px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -184,35 +185,39 @@ body {
 
 .welcome_end_wrapper {
   background-color: var(--main-color-2);
-  width: fit-content;
+  width: 100%;
   display: flex;
   padding: 15px;
   padding-inline: 40px;
   gap: 20px;
   align-items: center;
-  border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  margin-left: 100px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 .welcome_end_wrapper_text {
   color: white;
-  font-family: 'Poppins', sans-serif;
-  font-size: 20px;
-  font-weight: 600;
+  font-family: 'Anton', sans-serif;
+  font-size: 25px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+  text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .welcome_end_wrapper_button {
   color: white;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Roboto', sans-serif;
   background-color: var(--main-color);
   border-color: var(--main-color);
   border: 1px solid var(--main-color);
   border-radius: 5px;
-  text-transform: uppercase;
   font-weight: 600;
-  font-size: 11px;
+  font-size: 17px;
+  padding-inline: 20px;
   height: 45px;
-  width: 170px;
   transition: inherit;
   transition-duration: .3s;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -729,7 +734,7 @@ body {
 }
 
 .contact-us-1-subhead{
-  font-family: 'Poppins',sans-serif;
+  font-family: 'Roboto',sans-serif;
   font-size: 14px;
   line-height: 25px;
   font-weight: 600;
@@ -1001,7 +1006,7 @@ form button{
   width: 525px;
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 10px;
 }
 
 .a-portfolio-head{
@@ -1011,16 +1016,66 @@ form button{
   text-transform: uppercase;
 }
 
-.a-portfolio img{
+.a-portfolio-img{
   width: 100%;
+  height: 280px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
   border-radius: 3px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
-  transition-duration: .3s;
+  cursor: pointer;
+  position: relative;
 }
 
-.a-portfolio img:hover{
-  transform: scale(1.1);
-  cursor: pointer;
+.view-browser{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(82, 114, 249, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-family: 'Anton',sans-serif;
+  text-transform: uppercase;
+  font-size: 50px;
+  text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
+  transition-duration: .3s;
+  border-radius: 3px;
+  box-sizing: border-box;
+  transform: scale(0);
+  opacity: 0;
+  border-radius: 20px;
+}
+
+.a-portfolio-img:hover .view-browser{
+  transform: scale(1);
+  opacity: 1;
+  border-radius: 0px;
+}
+
+.port-1{
+  background-image: url("./utility/images/portfolio/2.png");
+}
+.port-2{
+  background-image: url("./utility/images/portfolio/1.png");
+}
+.port-3{
+  background-image: url("./utility/images/portfolio/3.png");
+}
+.port-4{
+  background-image: url("./utility/images/portfolio/4.png");
+}
+.port-5{
+  background-image: url("./utility/images/portfolio/5.png");
+}
+.port-6{
+  background-image: url("./utility/images/portfolio/7.png");
+}
+.port-7{
+  background-image: url("./utility/images/portfolio/8.png");
+}
+.port-8{
+  background-image: url("./utility/images/portfolio/9.png");
 }
 
 .a-portfolio-para{
@@ -1264,6 +1319,41 @@ form button{
   transition-duration: .1s;
 }
 
+/* Adding the Social Media Link here */
+.social-media-links{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+.social-media-links-wrapper{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.social-link-wrapper{
+  background-color: #FF882F;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  border-radius: 100%;
+  cursor: pointer;
+  transition-duration: .3s;
+  box-shadow: 4px 4px black;
+}
+
+.social-link-wrapper:hover{
+  background-color: white;
+  color: black;
+  transform: scale(1.1);
+  box-shadow: -4px 4px black;
+}
+
 /* Adding all the Media Queries Here */
 @media only screen and (max-width: 1100px){
   .about_us_wrapper{
@@ -1311,7 +1401,7 @@ form button{
   }
 
   .a_about_us_how_step {
-    padding: 40px;
+    padding: 35px;
   }
 
   .about_us_wrapper_prehead{
@@ -1452,6 +1542,10 @@ form button{
     background-color: var(--main-color);
   }
 
+  .about_us{
+    margin-top: 80px;
+  }
+
   .about_us_wrapper{
     flex-direction: column;
     gap: 40px;
@@ -1509,12 +1603,22 @@ form button{
     flex-direction: column-reverse;
   }
 
+  .a-portfolio-img{
+    height: 210px;
+  }
+
+  .a-portfolio-para{
+    line-height: 20px;
+    font-size: 15px;
+  }
+
   .our_services_cont_man{
     position: unset;
   }
 
   .contact-us-cont{
     flex-direction: column;
+    gap: 40px;
   }
 
   .welcome_head{
@@ -1525,6 +1629,24 @@ form button{
   .welcome_wrapper{
     padding-top: 40px;
     padding-left: 40px;
+    flex-direction: column-reverse;
+  }
+
+  .social-media-links-wrapper{
+    flex-direction: row;
+    gap: 12px;
+  }
+
+  .social-link-wrapper{
+    box-shadow: 0 0;
+    margin-bottom: 10px;
+    width: 35px;
+    height: 35px;
+    font-size: 15px;
+  }
+
+  .social-link-wrapper:hover{
+    box-shadow: 0 0;
   }
 
   .welcome_sub_head{
@@ -1538,6 +1660,9 @@ form button{
 
   .welcome_end_wrapper{
     padding: 10px;
+    margin-left: 0px;
+    border-radius: 0px;
+    justify-content: center;
   }
 
   .welcome_end_wrapper_button{
@@ -1550,5 +1675,51 @@ form button{
     padding: 0px;
     padding-top: 50px;
     padding-bottom: 50px;
+  }
+
+  .about_us_how_we_work{
+    margin-top: 30px;
+  }
+
+  .our_tech_head_wrap{
+    font-size: 30px;
+  }
+
+  .our_tech_head_bar{
+    background: none;
+  }
+
+  .our_tech_head_bar_revert{
+    background: none;
+  }
+
+  .contact-us-1-a-way{
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .contact-us-bataya{
+    display: none;
+  }
+
+  .contact-us-1-subhead{
+    line-height: 20px;
+    font-size: 14px;
+  }
+
+  .contact-us{
+    margin-top: 0px;
+  }
+
+  .contact-us-1-head{
+    font-size: 40px;
+  }
+  
+  .a_about_us_how_step_prehead{
+    width: 65px;
+    height: 65px;
+    font-size: 35px;
+    margin-top: -70px;
+    margin-left: -70px;
   }
 }
