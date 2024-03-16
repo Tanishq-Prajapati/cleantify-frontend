@@ -21,8 +21,14 @@ const Footer = () => {
                     Copyright @ 2024 Cleantify, Inc
                 </div>
                 <div className="footer-icons">
-                    <FaFacebookF className="a-footer-icon"></FaFacebookF>
-                    <FaInstagram className="a-footer-icon"></FaInstagram>
+                    <FaFacebookF 
+                        className="a-footer-icon"
+                        onClick={()=>open("https://www.facebook.com/profile.php?id=100088843502685")}
+                    ></FaFacebookF>
+                    <FaInstagram 
+                        className="a-footer-icon"
+                        onClick={()=>open("https://www.instagram.com/web.tanishq.dev?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==")}
+                    ></FaInstagram>
                     <FaTwitter className="a-footer-icon"></FaTwitter>
                 </div>
             </div>
